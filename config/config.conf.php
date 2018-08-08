@@ -1,13 +1,16 @@
 <?php
 date_default_timezone_set("Asia/Shanghai");
 
+/************************************常量定义***********************************************/
 define('SYSDIR_ROOT', realpath(dirname(__FILE__)."/../") . DIRECTORY_SEPARATOR);
 define('SYSDIR_LIBRARY', SYSDIR_ROOT."library/");
 define('SYSDIR_CONFIG',  SYSDIR_ROOT.'config/');
 define('SYSDIR_CACHE', 	SYSDIR_ROOT."cache/");
 define('SYSDIR_TEMPLATE',SYSDIR_ROOT."template/");
 define('SYSDIR_COMPILE',SYSDIR_ROOT."templates_c/");
+/************************************常量定义***********************************************/
 
+/************************************配置文件引入***********************************************/
 include_once "../library/Smarty/Smarty.class.php";
 
 
