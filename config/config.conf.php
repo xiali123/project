@@ -20,3 +20,4 @@ $smarty->caching = false; //设置Smarty缓存开关功能
 $smarty->cache_lifetime = 60*60*24; //设置缓存模板有效时间一天
 $smarty->left_delimiter = '<{'; //设置模板语言中的左结束符
 $smarty->right_delimiter = '}>'; //设置模板语言中的右结束符
+
