@@ -18,7 +18,11 @@
     </div>
 </div>
 
-<div><iframe src="<{}>" seamless></iframe></div>
-<div><iframe src="<{}>"  seamless></iframe></div>
+<div class="items">
+    <{foreach $items as $key => $item}>
+        <div class="item ">$item.name</div>
+    <{/foreach}>
+</div>
+<div><iframe src=""  seamless></iframe></div>
 </body>
 </html>
