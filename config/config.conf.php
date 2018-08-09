@@ -9,6 +9,8 @@ define('SYSDIR_CACHE', 	SYSDIR_ROOT."cache/");
 define('SYSDIR_TEMPLATE',SYSDIR_ROOT."template/");
 define('SYSDIR_COMPILE',SYSDIR_ROOT."templates_c/");
 define('SYSDIR_COMMNEN',SYSDIR_ROOT."commen/");
+define('SYSDIR_PUBLIC',SYSDIR_ROOT."public/");
+define('SYSDIR_LOG',SYSDIR_ROOT."log/");
 /************************************常量定义结束***********************************************/
 
 /************************************配置文件引入开始***********************************************/
