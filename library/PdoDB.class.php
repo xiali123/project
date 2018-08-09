@@ -1,4 +1,5 @@
 <?php
+namespace library;
 class PdoDB{
 
     private $host;
@@ -82,7 +83,11 @@ class PdoDB{
         return true;
     }
 
-    public function insert() {
+    private function query() {
+
+    }
+
+    public function insert(array $insert_arr, $table = '') {
 
     }
 
