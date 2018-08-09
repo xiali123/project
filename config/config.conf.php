@@ -8,13 +8,17 @@ define('SYSDIR_CONFIG',  SYSDIR_ROOT.'config/');
 define('SYSDIR_CACHE', 	SYSDIR_ROOT."cache/");
 define('SYSDIR_TEMPLATE',SYSDIR_ROOT."template/");
 define('SYSDIR_COMPILE',SYSDIR_ROOT."templates_c/");
+define('SYSDIR_COMMNEN',SYSDIR_ROOT."commen/");
 /************************************常量定义结束***********************************************/
 
 /************************************配置文件引入开始***********************************************/
+include_once SYSDIR_COMMNEN."function.func.php";
 include_once "../library/Smarty/Smarty.class.php";
 include_once SYSDIR_CONFIG."mysql.conf.php";
 
 /************************************配置文件引入结束***********************************************/
+
+spl_autoload_register('autoloader');
 
 /************************************Smarty配置开始***********************************************/
 $smarty = new Smarty();
