@@ -6,23 +6,42 @@
     <title>
         夏立的个人系统
     </title>
+    <link rel="stylesheet" href="../public/bootstrap4/css/bootstrap.min.css">
 
+    <script src="../public/js/jquery-3.3.1.min.js"></script>
+    <script src="../public/bootstrap4/js/bootstrap.min.js"></script>
+    <script src="../public/js/viewer-jquery.min.js"></script>
+    <link rel="stylesheet" href="../public/css/more.css">
 </head>
 <body>
-<div id="loading">
-    <div class="loading-indicator">
-        <img src="static/images/loadinga.gif"   style="margin-right:8px;" align="absmiddle"/>
-        页面加载中....
-        <span id="loading-msg">
-                </span>
-    </div>
-</div>
+<table class="total" border="1" borderColor="#000000">
+    <tr>
+        <td class="left-top"></td>
+        <td class="right-top">
+            <nav class="navbar navbar-expand-sm bg-light">
+                <ul class="navbar-nav">
+                    <{foreach $items as $key => $item}>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><{$item.name}></a>
+                    </li>
+                    <{/foreach}>
+                </ul>
+            </nav>
+        </td>
+    </tr>
+    <tr><td class="left">
+        <div class="items">
+                <{foreach $items as $key => $item}>
+                    <div class="item card bg-info">
+                        <div class="card-item card-body"><{$item.name}></div>
+                    </div>
+                <{/foreach}>
+        </div>
+    </td>
+        <td class="right">
+            <div class="card"><div class="card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
+        </td></tr>
+</table>
 
-<div class="items">
-    <{foreach $items as $key => $item}>
-        <div class="item ">$item.name</div>
-    <{/foreach}>
-</div>
-<div><iframe src=""  seamless></iframe></div>
 </body>
 </html>

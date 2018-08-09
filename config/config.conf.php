@@ -15,12 +15,12 @@ define('SYSDIR_LOG',SYSDIR_ROOT."log/");
 
 /************************************配置文件引入开始***********************************************/
 include_once SYSDIR_COMMNEN."function.func.php";
-include_once "../library/Smarty/Smarty.class.php";
+include_once SYSDIR_LIBRARY."Smarty/Smarty.class.php";
 include_once SYSDIR_CONFIG."mysql.conf.php";
 
 /************************************配置文件引入结束***********************************************/
 
-spl_autoload_register('autoloader');
+spl_autoload_register('autoload');
 
 /************************************Smarty配置开始***********************************************/
 $smarty = new Smarty();
