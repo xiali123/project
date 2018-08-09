@@ -56,8 +56,11 @@ class PdoDB{
             );
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //开启异常处理
         } catch(PDOException $e) {
-
+            echo "数据库连接失败：".$e->getMessage();
+            return false;
         }
+        $this->alive = true;
+        return true;
     }
 
     private function reconnect() {
