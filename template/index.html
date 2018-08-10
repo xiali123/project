@@ -14,10 +14,7 @@
     <link rel="stylesheet" href="../public/css/more.css">
 </head>
 <body>
-<table class="total" border="1" borderColor="#000000">
-    <tr>
-        <td class="left-top"></td>
-        <td class="right-top">
+
             <div class="right-top-div">
             <nav class="items-nav-bar navbar navbar-expand-sm bg-light">
                 <ul class="items-nav navbar-nav">
@@ -34,9 +31,8 @@
                 <a class="item-top-nav nav-link" href="#">登录</a></button>
                 <li class="register item-top nav-item"><a class="item-top-nav nav-link" href="#">注册</a></li>
             </div>
-        </td>
-    </tr>
-    <tr><td class="left">
+
+
         <div class="items">
                 <{foreach $items as $key => $item}>
                     <div class="item card ">
@@ -44,11 +40,8 @@
                     </div>
                 <{/foreach}>
         </div>
-    </td>
-        <td class="right">
             <div class="content-div card"><div class="content card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
-        </td></tr>
-</table>
+
 
 
 <div class="modal fade" id="myModal">

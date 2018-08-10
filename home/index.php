@@ -1,6 +1,8 @@
 <?php
 
-
+if(!$is_login) {
+    header("Location: http://project/login.php");
+}
 $items = array(
     0 => array(
         'name' => "学习",
