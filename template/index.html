@@ -14,9 +14,9 @@
     <link rel="stylesheet" href="../public/css/more.css">
 </head>
 <body>
-
-            <div class="right-top-div">
-            <nav class="items-nav-bar navbar navbar-expand-sm bg-light">
+    <div class="right-top-div card row">
+        <div class="items-top card-body">
+            <nav class="items-nav-bar navbar navbar-expand-sm">
                 <ul class="items-nav navbar-nav">
                     <{foreach $items as $key => $item}>
                     <li class="item-top nav-item">
@@ -27,45 +27,21 @@
                 </ul>
 
             </nav>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                <a class="item-top-nav nav-link" href="#">登录</a></button>
-                <li class="register item-top nav-item"><a class="item-top-nav nav-link" href="#">注册</a></li>
-            </div>
+        </div>
+    </div>
 
-
-        <div class="items">
+    <div class="card ">
+        <div class="card-body row">
+            <div class="items col-xl-2">
                 <{foreach $items as $key => $item}>
                     <div class="item card ">
                         <div class="card-item card-body" data-url="<{$item.url}>"><{$item.name}></div>
                     </div>
                 <{/foreach}>
-        </div>
-            <div class="content-div card"><div class="content card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
-
-
-
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- 模态框头部 -->
-            <div class="modal-header">
-                <h4 class="modal-title">模态框头部</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
-            <!-- 模态框主体 -->
-            <div class="modal-body">
-                模态框内容..
-            </div>
-
-            <!-- 模态框底部 -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-            </div>
+            <div class="content-div card col-xl-10"><div class="content card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
 
         </div>
     </div>
-</div>
 </body>
 </html>
