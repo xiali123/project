@@ -35,7 +35,7 @@
         <div class="items">
                 <{foreach $items as $key => $item}>
                     <div class="item card ">
-                        <div class="card-item card-body"><{$item.name}></div>
+                        <div class="card-item card-body" data-url="<{$item.url}>"><{$item.name}></div>
                     </div>
                 <{/foreach}>
         </div>

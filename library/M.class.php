@@ -37,7 +37,11 @@ class M{
     /***************************私有方法开始***********************************/
     private function getField(){
         if($this->pdo->alive == true) {
+            $sql = "select * from ".$this->table." limit 0, 1";
+            $result = $this->pdo->select($sql);
+            foreach($result as $key => $value) {
 
+            }
         }
     }
     /***************************私有方法结束***********************************/

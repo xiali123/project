@@ -83,16 +83,20 @@ class PdoDB{
         return true;
     }
 
-    private function query() {
-
+    private function query($sql) {
+        $sth = $this->pdo->prepare($sql);
+        return $sth;
     }
 
     public function insert(array $insert_arr, $table = '') {
 
     }
 
-    public function select() {
-
+    public function select($sql) {
+        $sth = $this->query($sql);
+        $sth->execute();
+        $result = $sth->fetchAll();
+        return $result;
     }
 
     public function update() {
