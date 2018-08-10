@@ -1,5 +1,5 @@
 iframe{
-    width: 1000px;
+    width: 100%;
     border:none;
     height: 700px;
     margin: 0px;
@@ -54,7 +54,6 @@ iframe{
 }
 
 .item-btn-card{
-    width: 205px;
     height:45px;
     margin:2px 0 0 0;
     padding:0;
@@ -62,7 +61,6 @@ iframe{
 }
 .item-btn-card-body{
     font-size: 18px;
-    width: 205px;
     height:45px;
     margin:0;
     padding: 10px;

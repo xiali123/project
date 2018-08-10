@@ -15,7 +15,7 @@ $items = array(
     ),
 );
 
-$firstSrc = "http://www.baidu.com";
+$firstSrc = "home/learn/index.php";
 $smarty->assign('items', $items);
 $smarty->assign('firstSrc', $firstSrc);
 $smarty->display('index.html');
