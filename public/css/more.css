@@ -76,17 +76,8 @@ iframe{
     color:#E4E6E7;
 }
 
-.login-div{
-    border:1px solid #ff0000;
-}
-
-.login-div-div{
-    border:1px solid #ff0000;
-    margin: 400px;
-}
-
-.login{
-    width:950px;
-    height: 540px;
-    margin: 0 auto;
+.content-login{
+    margin-top: 200px;
+    height: 500px;
+    border:1px solid #FF0000;
 }
