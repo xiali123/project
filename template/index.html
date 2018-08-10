@@ -32,12 +32,16 @@
 
     <div class="card ">
         <div class="card-body row">
-            <div class="items col-xl-2">
+            <div class="items col-xl-2 ">
+
                 <{foreach $items as $key => $item}>
-                    <div class="item card ">
-                        <div class="card-item card-body" data-url="<{$item.url}>"><{$item.name}></div>
+                    <div class="card item-btn-card">
+                        <div class="card-body item-btn-card-body">
+                              <{$item.name}>
+                        </div>
                     </div>
                 <{/foreach}>
+
             </div>
             <div class="content-div card col-xl-10"><div class="content card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
 
