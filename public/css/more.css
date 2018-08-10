@@ -75,3 +75,18 @@ iframe{
     background: #444444;
     color:#E4E6E7;
 }
+
+.login-div{
+    border:1px solid #ff0000;
+}
+
+.login-div-div{
+    border:1px solid #ff0000;
+    margin: 400px;
+}
+
+.login{
+    width:950px;
+    height: 540px;
+    margin: 0 auto;
+}
