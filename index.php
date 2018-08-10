@@ -10,7 +10,7 @@ include_once "config/config.conf.php";
 /**************************authenticate(验证)***********************************/
 
 //文件入口
-$is_login = true;
+$is_login = false;
 
 if(!$is_login) {
     include_once "home/login.php";
