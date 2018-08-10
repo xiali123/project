@@ -64,8 +64,11 @@ class PdoDB{
         return true;
     }
 
-    public function insert(array $insert_arr, $table = '') {
-
+    public function insert(array $insert_arr, $table = '', $type = 0) {
+        $sql = $this->getInsertSql($insert_arr, $table, $type);
+        $sth = $this->query($sql);
+        $result = $sth->execute();
+        return ($result == 0) ? true: false;
     }
 
     public function select($sql) {
