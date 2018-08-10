@@ -79,5 +79,11 @@ iframe{
 .content-login{
     margin-top: 200px;
     height: 500px;
-    border:1px solid #FF0000;
+    background: #FFFFFF;
+}
+
+.content-login1{
+    margin-bottom: 10px;
+    font-size:25px;
+
 }
