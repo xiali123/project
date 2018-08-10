@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "config/config.conf.php";
 
 /**************************mysql数据库创建(验证)***********************************/
@@ -10,7 +11,7 @@ include_once "config/config.conf.php";
 /**************************authenticate(验证)***********************************/
 
 //文件入口
-$is_login = false;
+$is_login = $_SESSION['is_login'];
 
 if(!$is_login) {
     include_once "home/login.php";
