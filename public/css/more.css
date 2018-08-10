@@ -10,20 +10,23 @@ iframe{
     margin-top: 0;
 }
 .items{
-    margin-top: -18px;
+    margin-bottom: 22px;
+    margin-top: -22px;
+    padding:0 2px;
 }
 .content-div{
-    margin-top: -16px;
+    margin: -22px 0 0 0;
     padding: 0;
 }
 .items-top{
-    padding:60px 0 0 0;
+    padding:0 0 0 0;
     border:none;
 }
 
 .items-nav-bar{
     height: 55px;
-    background: #444444;
+    border-radius: 5px;
+    background: #343A40;
     border:none;
     padding:0 0 0 60px;
 }
@@ -39,7 +42,7 @@ iframe{
     font-size: 18px;
     text-align: center;
     color:#EBEFF3;
-    letter-spacing:1px;
+    letter-spacing:2px;
 }
 
 .item-top-nav:hover{
@@ -70,7 +73,7 @@ iframe{
 }
 
 .item-btn-card-body:hover{
-    background: #444444;
+    background: #343A40;
     color:#E4E6E7;
 }
 
@@ -87,7 +90,7 @@ iframe{
 
 .content{
     margin:0;
-    padding: 0;
+    padding:0;
 }
 
 .login-card{
