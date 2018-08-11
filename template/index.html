@@ -58,12 +58,17 @@
                 function(data,status) {
                     var text = JSON.parse(data);
                     var d = 0;
-                    $(".second_link").each(value, function() {
-                        value.attr("href", data[d].url);
-                        value.text(data[d].name);
-                        d++;
-                    });
-                    $("#cnt_iframe").attr("src", data[0].url);
+                    if(text.success == true) {
+                        var datas = text.data;
+                        $(".second_link").each(value, function() {
+                            value.attr("href", datas[d].url);
+                            value.text(datas[d].name);
+                            d++;
+                        });
+                        $("#cnt_iframe").attr("src", datas[0].url);
+                    } else {
+
+                    }
                 }
             );
         });

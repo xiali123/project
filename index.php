@@ -4,7 +4,7 @@ include_once "config/config.conf.php";
 
 /**************************mysql数据库创建(验证)***********************************/
 $str = file_get_contents('./config/install.txt');
-if($str == 1) {
+if($str == 0) {
     include_once "home/mysql.php";
 }
 /**************************mysql数据库创建(验证)***********************************/
