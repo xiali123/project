@@ -4,18 +4,27 @@ iframe{
     border-radius: 5px;
     height: 750px;
     margin: 0;
+    padding: 0;
+}
+
+.bottom-div{
+    margin: 0;
+    padding:0 15px 0 15px;
+    border:none;
 }
 
 .bottom-div-card{
     margin-top: 0;
+    padding: 0px;
+    border-radius: 5px;
 }
 .items{
-    margin-bottom: 22px;
-    margin-top: -22px;
+    margin-bottom: 0px;
+    margin-top: 0px;
     padding:0 2px;
 }
 .content-div{
-    margin: -22px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0;
 }
 .items-top{
