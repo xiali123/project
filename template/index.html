@@ -20,10 +20,9 @@
                 <ul class="items-nav navbar-nav">
                     <{foreach $items as $key => $item}>
                     <li class="item-top nav-item">
-                        <a class="item-top-nav nav-link" href="#"><{$item.name}></a>
+                        <a class="item-top-nav nav-link" href="<{$item.url}>" data-id="<{$key}>" target="cnt_iframe"><{$item.name}></a>
                     </li>
                     <{/foreach}>
-
                 </ul>
 
             </nav>
@@ -34,18 +33,41 @@
         <div class="bottom-div-card card-body row">
             <div class="items col-lg-3 col-xl-2  ">
 
-                <{foreach $items as $key => $item}>
+                <{foreach $items_second as $key => $item}>
                     <div class="card item-btn-card">
                         <div class="card-body item-btn-card-body">
-                              <{$item.name}>
+                            <a class="second_link" href="<{$item.url}>" target="cnt_iframe"><{$item.name}></a>
                         </div>
                     </div>
                 <{/foreach}>
 
             </div>
-            <div class="content-div card col-lg-9  col-xl-10"><div class="content card-body"><iframe src="<{$firstSrc}>"  seamless></iframe></div></div>
+            <div class="content-div card col-lg-9  col-xl-10"><div class="content card-body"><iframe id="cnt_iframe" name="cnt_iframe" src="<{$firstSrc}>"  seamless></iframe></div></div>
 
         </div>
     </div>
+
+<script type="text/javascript">
+    $(function() {
+        $(".item-top-nav").click(function() {
+            var first_id = this.getAttribute("data-id");
+            $.post("./home/index.php?act=getModel",
+                {
+                    id:first_id
+                },
+                function(data,status) {
+                    var text = JSON.parse(data);
+                    var d = 0;
+                    $(".second_link").each(value, function() {
+                        value.attr("href", data[d].url);
+                        value.text(data[d].name);
+                        d++;
+                    });
+                    $("#cnt_iframe").attr("src", data[0].url);
+                }
+            );
+        });
+    });
+</script>
 </body>
 </html>
