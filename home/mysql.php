@@ -8,6 +8,7 @@ if($act == "install") {
     $name = $_POST['name'];
     $pwd = $_POST['pwd'];
 
+    $shell_mysql_create_db = " ";
 
 } else {
     $smarty->display("mysql.html");
