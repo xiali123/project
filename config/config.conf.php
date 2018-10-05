@@ -17,6 +17,7 @@ define('SYSDIR_LOG',SYSDIR_ROOT."log/");
 include_once SYSDIR_COMMNEN."function.func.php";
 include_once SYSDIR_LIBRARY."Smarty/Smarty.class.php";
 include_once SYSDIR_CONFIG."mysql.conf.php";
+//include_once SYSDIR_LIBRARY."PdoDB.class.php";
 
 /************************************配置文件引入结束***********************************************/
 
@@ -35,5 +36,11 @@ $smarty->right_delimiter = '}>'; //设置模板语言中的右结束符
 /************************************Smarty配置结束***********************************************/
 
 /************************************数据库操作开始***********************************************/
+function db() {
+    $GLOBALS['pdo'] = new PdoDB($GLOBALS['MYSQL_INFO'][0]);
+    $GLOBALS['pdo']->connect();
+}
 
+$pdo;
+db();
 /************************************数据库操作结束***********************************************/

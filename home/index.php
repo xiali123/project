@@ -1,39 +1,25 @@
 <?php
 
-$items = array(
-    0 => array(
-        'name' => "学习",
-        'url'  => "http://www.baidu.com",
-    ),
-    1 => array(
-        'name' => "学习",
-    ),
-    2 => array(
-        'name' => "学习",
-    ),
-    3 => array(
-        'name' => "学习",
-    ),
-);
+$sql = "select * from system_model";
+$result = $pdo->select($sql);
 
-$items_second = array(
-    0 => array(
-        'name' => "学习",
-        'url'  => "http://www.baidu.com",
-    ),
-    1 => array(
-        'name' => "学习",
-        'url'  => "http://www.hao123.com",
-    ),
-    2 => array(
-        'name' => "学习",
-        'url'  => "http://www.sina.com",
-    ),
-    3 => array(
-        'name' => "学习",
-        'url'  => "http://www.sina.com",
-    ),
-);
+$items = array();
+$items_second = array();
+$d = 0;
+$c = 0;
+foreach($result as $key => $value) {
+    if($value['parent_id'] == 0) {
+        $items[$d]['name'] = $value['name'];
+        $items[$d]['url'] = $value['url'];
+        $d++;
+    }
+
+    if($value['parent_id'] == 4) {
+        $items_second[$c]['name'] = $value['name'];
+        $items_second[$c]['url'] = $value['url'];
+        $c++;
+    }
+}
 
 $firstSrc = "home/learn/index.php";
 $smarty->assign('items', $items);

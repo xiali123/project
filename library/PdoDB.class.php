@@ -1,5 +1,4 @@
 <?php
-namespace library;
 class PdoDB{
 
     private $host;
@@ -10,6 +9,7 @@ class PdoDB{
     private $dbms;
     private $dns;
     private $pdo;
+    private $charset;
     private $pconnect = 1;
     private $alive = false;
     private $info = array(
@@ -38,7 +38,7 @@ class PdoDB{
         $this->charset = $this->info['charset'];
         $this->pconnect = $this->info['pconnect'];
         $this->host = $this->info['host'];
-        $this->dns = $this->dbms.":host=".$this->host.",dbname=".$this->dbname;
+        $this->dns = $this->dbms.":host=".$this->host.";dbname=".$this->dbname;
     }
 
     public function selectDb() {
@@ -123,6 +123,7 @@ class PdoDB{
             echo "数据库连接失败：".$e->getMessage();
             return false;
         }
+        $this->pdo->exec('set names utf8');
         $this->alive = true;
         return true;
     }
