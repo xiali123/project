@@ -6,13 +6,17 @@ function Draw() {
     this.objDraw = "div";
     this.isDraw = 0;
     this.init = function(x, y, width, height, dom) {
-        var canvasDom;
+        var canvasDom,i,dotx,doty,args,xy,j;
         this.cvsCfg.x = x;
         this.cvsCfg.y = y;
         this.cvsCfg.width = width;
         this.cvsCfg.height = height;
         this.cvsCfg.centerX = x + this.cvsCfg.width/2;
         this.cvsCfg.centerY = x + this.cvsCfg.height/2;
+        this.cvsCfg.left = x;
+        this.cvsCfg.right = x + width;
+        this.cvsCfg.top = y;
+        this.cvsCfg.bottom = y + height;
 
         canvasDom = document.createElement(this.objDraw);
         canvasDom.style.display = "block";
@@ -24,6 +28,35 @@ function Draw() {
         dom.appendChild(canvasDom);
         this.canvas = canvasDom;
 
+        this.isDraw = 1;
+        args = new Array();
+        args[0] = this.cvsCfg.centerX;
+        args[1] = this.cvsCfg.top;
+        args[2] = this.cvsCfg.centerX;
+        args[3] = this.cvsCfg.bottom;
+        args[4] = "";
+        args[5] = "";
+        this.line(args);
+        args[0] = this.cvsCfg.left;
+        args[1] = this.cvsCfg.centerY;
+        args[2] = this.cvsCfg.right;
+        args[3] = this.cvsCfg.centerY;
+
+        this.line(args);
+        args[0] = this.cvsCfg.left;
+        args[1] = this.cvsCfg.top;
+        args[2] = this.cvsCfg.right;
+        args[3] = this.cvsCfg.bottom;
+
+        this.line(args);
+        args[0] = this.cvsCfg.right;
+        args[1] = this.cvsCfg.top;
+        args[2] = this.cvsCfg.left;
+        args[3] = this.cvsCfg.bottom;
+
+        this.line(args);
+        this.isDraw = 0;
+
     };
     this.dot = function(args) {
         var x, y, dotDom, style;
@@ -32,7 +65,7 @@ function Draw() {
         style = args[2];
         if(this.isDraw == 1) {
             dowDom = document.createElement(this.objDraw);
-            dowDom.setAttribute('style', style);
+            //dowDom.setAttribute('style', style);
             dowDom.style.display = "block";
             dowDom.style.position = "absolute";
             dowDom.style.left = x;
@@ -45,7 +78,30 @@ function Draw() {
     };
 
     this.line = function(args) {
-
+        var startX, endX,startY, endY, lineWeight, color,i,j, dotArgs,width, height, xy,yx;
+        dotArgs = new Array();
+        startX = args[0];
+        endX = args[1];
+        startY = args[2];
+        endY = args[3];
+        lineWeight = args[4];
+        color = args[5];
+        width = startY - startX;
+        height = endY - endX;
+        xy = Math.abs(Math.floor(width / height));
+        yx = Math.abs(Math.floor(height / width));
+        for(i = startX, j = startY; i< endX && j<endY; ) {
+            dotArgs[0] = i;
+            dotArgs[1] = j;
+            this.dot(dotArgs);
+            if(xy > yx) {
+                i += xy;
+                j++;
+            }else {
+                j += yx;
+                i++;
+            }
+        }
     };
 
     this.circle = function(args) {
