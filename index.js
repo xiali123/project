@@ -124,3 +124,5 @@ function Draw() {
         }
     }
 }
+
+draw = new Draw();
