@@ -5,20 +5,25 @@
     <title>
 
     </title>
+    <style  type="text/css">
+        .container{position:absolute;margin:0 auto;height:100%;width:100%;}
+    </style>
     <script type="text/javascript" src="./index.js"></script>
 
 </head>
 <body>
 <div class="container" id="container"></div>
 <script type="text/javascript">
-    var body, bodyX, bodyY, bodyW, bodyH,divId;
+    var body, bodyX, bodyY, bodyW, bodyH,divId,draw;
     divId = 'container';
     body = document.getElementById(divId);
     bodyX = body.offsetLeft;
     bodyY = body.offsetTop;
     bodyW = body.offsetWidth;
     bodyH = body.offsetHeight;
+    draw = new Draw();
     draw.init(bodyX, bodyY, bodyW, bodyH, body);
+    console.log(bodyH);
 
 </script>
 </body>
