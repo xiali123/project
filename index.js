@@ -30,14 +30,14 @@ function Draw() {
 
         this.isDraw = 1;
         args = new Array();
-        args[0] = this.cvsCfg.width/2;
+        /*args[0] = this.cvsCfg.width/2;
         args[1] = 0;
         args[2] = this.cvsCfg.width/2;
         args[3] = this.cvsCfg.height;
         args[4] = "";
         args[5] = "";
         this.line(args);
-        /*
+
         args[0] = this.cvsCfg.left;
         args[1] = this.cvsCfg.centerY;
         args[2] = this.cvsCfg.right;
@@ -49,14 +49,14 @@ function Draw() {
         args[2] = this.cvsCfg.right;
         args[3] = this.cvsCfg.bottom;
 
-        this.line(args);
+        this.line(args);*/
         args[0] = this.cvsCfg.right;
         args[1] = this.cvsCfg.top;
         args[2] = this.cvsCfg.left;
         args[3] = this.cvsCfg.bottom;
 
         this.line(args);
-        */
+
         this.isDraw = 0;
 
     };
@@ -92,26 +92,29 @@ function Draw() {
         color = args[5];
         width = startY - startX;
         height = endY - endX;
-        xy = Math.abs(Math.floor(width / height));
-        yx = Math.abs(Math.floor(height / width));
-        for(i = startX, j = startY; i<= endX && j<=endY; ) {
-            dotArgs[0] = i;
-            dotArgs[1] = j;
-            this.dot(dotArgs);console.log(this.canvas);
-            if(xy > yx) {
+        if(width >= height) {
+            xy = Math.floor(width / height);
+            yx = 1;
+        } else {
+            yx = Math.floor(height / width);
+            xy = 1;
+        }
+
+        if(startX == endX && startY != endY) {
+
+        } else if(startY == endY && startX != endX) {
+
+        } else if(startY != endY && startX != endX) {
+            console.log(args);
+            for(i = startX, j = startY; i<= endX && j<=endY; ) {
+                dotArgs[0] = i;
+                dotArgs[1] = j;console.log(this.canvas);
+                this.dot(dotArgs);
                 i += xy;
-                j++;
-            }else {
                 j += yx;
-                i++;
-            }
-            if(j > endY && i <= endX) {
-                j = endY;
-            }
-            if(i > endX && j <= endY) {
-                i = endX;
             }
         }
+
     };
 
     this.circle = function(args) {
