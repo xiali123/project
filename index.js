@@ -61,7 +61,7 @@ function Draw() {
 
     };
     this.dot = function(args) {
-        var x, y, dotDom,dowDom ,style;
+        var x, y,dowDom ,style;
         x = args[0];
         y = args[1];
         if(this.isDraw == 1) {
@@ -82,39 +82,72 @@ function Draw() {
     };
 
     this.line = function(args) {
-        var startX, endX,startY, endY, lineWeight, color,i,j, dotArgs,width, height, xy,yx;
-        dotArgs = new Array();
+        var startX, endX,startY, endY,dowDom, lineWeight,lineLen, color,width, height,Deg, lineDeg,cx,cy;
         startX = args[0];
         endX = args[1];
         startY = args[2];
         endY = args[3];
         lineWeight = args[4];
         color = args[5];
-        width = startY - startX;
-        height = endY - endX;
-        if(width >= height) {
-            xy = Math.floor(width / height);
-            yx = 1;
+
+
+        //计算线条的长度
+        width = Math.abs(startX - endX);
+        height = Math.abs(startY - endY);
+        lineLen = Math.sqrt(width*width + height*height);
+
+        if(startX > endX) {
+            cx = -1;
+        } else if(startX == endX) {
+            cx = 0;
         } else {
-            yx = Math.floor(height / width);
-            xy = 1;
+            cx = 1;
         }
 
-        if(startX == endX && startY != endY) {
+        if(startY > endY) {
+            cy = -1;
+        } else if(startY == endY) {
+            cy = 0;
+        } else {
+            cy = 1;
+        }
 
-        } else if(startY == endY && startX != endX) {
 
-        } else if(startY != endY && startX != endX) {
-            console.log(args);
-            for(i = startX, j = startY; i<= endX && j<=endY; ) {
-                dotArgs[0] = i;
-                dotArgs[1] = j;console.log(this.canvas);
-                this.dot(dotArgs);
-                i += xy;
-                j += yx;
+        if(cy == 0 || cx == 0) {
+            if(cx == 0) {
+                if(cy == 1) {
+                    lineDeg = Math.PI /2;
+                } else if(cy == -1)  {
+                    lineDeg = Math.PI /2 * 3;
+                }
+            } else if(cy == 0) {
+                if(cx == 1) {
+                    lineDeg = Math.PI /2;
+                } else if(cx == -1)  {
+                    lineDeg = Math.PI /2 * 3;
+                }
             }
+        } else {
+            //计算线条的旋转角度
+            Deg = Math.atan(height/width) % Math.PI;
+            if(cx == 1) {
+                if(cy == 1) {
+                    lineDeg = Deg;
+                } else if(cy == -1) {
+                    lineDeg = 2*Math.PI - Deg;
+                }
+            } else if(cx == -1) {
+                if(cy == 1) {
+                    lineDeg = Math.PI - Deg;
+                } else if(cy == -1) {
+                    lineDeg = Math.PI + Deg;
+                }
+            }
+
         }
 
+        dowDom = this.createDraw(startX, startY, lineLen, 1, 1);
+        dowDom.style.transform = "rotate("+lineDeg+"deg)";
     };
 
     this.circle = function(args) {
@@ -135,6 +168,19 @@ function Draw() {
         } else if(actType == 2) {
 
         }
+    }
+    this.createDraw = function(x, y, width, height, linewidth) {
+        var dowDom;
+        dowDom = document.createElement(this.objDraw);
+        //dowDom.setAttribute('style', style);
+        dowDom.style.display = "block";
+        dowDom.style.position = "absolute";
+        dowDom.style.left = x+"px";
+        dowDom.style.top = y+"px";
+        dowDom.style.width = width+"px";
+        dowDom.style.height = height + "px";
+        dowDom.style.border = linewidth + "px solid #000000";
+        return dowDom;
     }
 }
 
