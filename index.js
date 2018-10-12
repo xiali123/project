@@ -43,17 +43,17 @@ function Draw() {
         args[2] = this.cvsCfg.right;
         args[3] = this.cvsCfg.centerY;
 
-        this.line(args);
-        args[0] = this.cvsCfg.left;
-        args[1] = this.cvsCfg.top;
-        args[2] = this.cvsCfg.right;
-        args[3] = this.cvsCfg.bottom;
-
         this.line(args);*/
-        args[0] = this.cvsCfg.right;
-        args[1] = this.cvsCfg.top;
-        args[2] = this.cvsCfg.left;
-        args[3] = this.cvsCfg.bottom;
+        args[0] = 0;
+        args[1] = height*0.8;
+        args[2] = width*0.8;
+        args[3] = 0;
+
+        this.line(args);
+        args[0] = 0;
+        args[1] = width*0.8;
+        args[2] = 0;
+        args[3] = height*0.8;
 
         this.line(args);
 
@@ -82,7 +82,7 @@ function Draw() {
     };
 
     this.line = function(args) {
-        var startX, endX,startY, endY,dowDom, lineWeight,lineLen, color,width, height,Deg, lineDeg,cx,cy;
+        var startX, endX,startY, endY,dowDom, lineWeight,lineLen, color,width, height,Deg, lineDeg,cx,cy,linex, liney;
         startX = args[0];
         endX = args[1];
         startY = args[2];
@@ -146,8 +146,13 @@ function Draw() {
 
         }
 
-        dowDom = this.createDraw(startX, startY, lineLen, 1, 1);
-        dowDom.style.transform = "rotate("+lineDeg+"deg)";
+        lineDeg = lineDeg / Math.PI * 180;
+
+
+        linex = -(lineLen - width)/2;
+        liney = height/2;
+        dowDom = this.createDraw(linex, liney, lineLen, 1, 1, lineDeg);
+
     };
 
     this.circle = function(args) {
@@ -169,17 +174,22 @@ function Draw() {
 
         }
     }
-    this.createDraw = function(x, y, width, height, linewidth) {
+    this.createDraw = function(x, y, width, height, linewidth, lineDeg) {
         var dowDom;
         dowDom = document.createElement(this.objDraw);
         //dowDom.setAttribute('style', style);
+        this.canvas.appendChild(dowDom);
         dowDom.style.display = "block";
         dowDom.style.position = "absolute";
         dowDom.style.left = x+"px";
         dowDom.style.top = y+"px";
         dowDom.style.width = width+"px";
         dowDom.style.height = height + "px";
-        dowDom.style.border = linewidth + "px solid #000000";
+        dowDom.style.border = "none";
+        dowDom.style.background = "#000000";
+        if(lineDeg != "") {
+            dowDom.style.transform = "rotate("+lineDeg+"deg)";
+        }
         return dowDom;
     }
 }
