@@ -1,21 +1,22 @@
 function Draw() {
     this.config = {};
-    this.canvas;
+    this.canvas = {};
     this.cvsCfg = {};
+    this.cvsCfg.shape = {};
     this.objDraw = "div";
     this.isDraw = 0;
-    this.init = function(x, y, width, height, dom) {
-        var canvasDom,i,dotx,doty,args,xy,j;
+    this.init = function(x, y, width, height, dom, type) {
+        var canvasDom,i,dotx,doty,mycars0,mycars1,mycars2,mycars3,xy,j;
         this.cvsCfg.x = x;
         this.cvsCfg.y = y;
         this.cvsCfg.width = width;
         this.cvsCfg.height = height;
-        this.cvsCfg.centerX = x + Math.floor(this.cvsCfg.width/2);
-        this.cvsCfg.centerY = x + Math.floor(this.cvsCfg.height/2);
-        this.cvsCfg.left = x;
-        this.cvsCfg.right = x + width;
-        this.cvsCfg.top = y;
-        this.cvsCfg.bottom = y + height;
+        this.cvsCfg.centerX = Math.floor(this.cvsCfg.width/2);
+        this.cvsCfg.centerY = Math.floor(this.cvsCfg.height/2);
+        this.cvsCfg.left = 0;
+        this.cvsCfg.right = width;
+        this.cvsCfg.top = 0;
+        this.cvsCfg.bottom = height;
 
         canvasDom = document.createElement(this.objDraw);
         canvasDom.style.display = "block";
@@ -29,36 +30,8 @@ function Draw() {
         this.canvas = canvasDom;
 
         this.isDraw = 1;
-        args = new Array();
-        /*args[0] = this.cvsCfg.width/2;
-        args[1] = 0;
-        args[2] = this.cvsCfg.width/2;
-        args[3] = this.cvsCfg.height;
-        args[4] = "";
-        args[5] = "";
-        this.line(args);
-
-        args[0] = this.cvsCfg.left;
-        args[1] = this.cvsCfg.centerY;
-        args[2] = this.cvsCfg.right;
-        args[3] = this.cvsCfg.centerY;
-
-        this.line(args);*/
-        args[0] = 0;
-        args[1] = height*0.8;
-        args[2] = width*0.8;
-        args[3] = 0;
-
-        this.line(args);
-        args[0] = 0;
-        args[1] = width*0.8;
-        args[2] = 0;
-        args[3] = height*0.8;
-
-        this.line(args);
-
+        this.block(type);
         this.isDraw = 0;
-
     };
     this.dot = function(args) {
         var x, y,dowDom ,style;
@@ -81,15 +54,14 @@ function Draw() {
         }
     };
 
-    this.line = function(args) {
-        var startX, endX,startY, endY,dowDom, lineWeight,lineLen, color,width, height,Deg, lineDeg,cx,cy,linex, liney;
-        startX = args[0];
-        endX = args[1];
-        startY = args[2];
-        endY = args[3];
-        lineWeight = args[4];
-        color = args[5];
-
+    this.line = function(argss) {
+        var startX, endX,startY, endY,dowDom, lineWeight,lineLen, color,width, height,Deg, lineDeg,cx,cy,linex, liney, lx, ly;
+        startX = argss[0];
+        endX = argss[1];
+        startY = argss[2];
+        endY = argss[3];
+        linex = (startX + endX) / 2;
+        liney = (startY + endY) / 2;
 
         //计算线条的长度
         width = Math.abs(startX - endX);
@@ -118,13 +90,13 @@ function Draw() {
                 if(cy == 1) {
                     lineDeg = Math.PI /2;
                 } else if(cy == -1)  {
-                    lineDeg = Math.PI /2 * 3;
+                    lineDeg = Math.PI /2;
                 }
             } else if(cy == 0) {
                 if(cx == 1) {
-                    lineDeg = Math.PI /2;
+                    lineDeg = 0;
                 } else if(cx == -1)  {
-                    lineDeg = Math.PI /2 * 3;
+                    lineDeg = Math.PI /2;
                 }
             }
         } else {
@@ -147,16 +119,74 @@ function Draw() {
         }
 
         lineDeg = lineDeg / Math.PI * 180;
+        lx = linex - lineLen /2;
+        ly = liney;
 
+        this.createDraw(lx, ly, lineLen, 1, 1, lineDeg);
 
-        linex = -(lineLen - width)/2;
-        liney = height/2;
-        dowDom = this.createDraw(linex, liney, lineLen, 1, 1, lineDeg);
 
     };
 
-    this.circle = function(args) {
+    //画图区分块
+    this.block = function(type) {
+        var mycars,width, height;
+        width = this.cvsCfg.width;
+        height = this.cvsCfg.height;
+        mycars = new Array();
+        if(type == 8) {
+            mycars[0] = width*0.8/2;
+            mycars[1] = width*0.8/2;
+            mycars[2] = 0;
+            mycars[3] = height*0.8;
+            this.line(mycars);
+            mycars[0] = 0;
+            mycars[1] = width*0.8;
+            mycars[2] = height*0.8/2;
+            mycars[3] = height*0.8/2;
+            this.line(mycars);
+            mycars[0] = 0;
+            mycars[1] = width*0.8;
+            mycars[2] = height*0.8;
+            mycars[3] = 0;
+            this.line(mycars);
+            mycars[0] = 0;
+            mycars[1] = width*0.8;
+            mycars[2] = 0;
+            mycars[3] = height*0.8;
+            this.line(mycars);
+        } else if(type == 4) {
+            mycars[0] = width*0.8/2;
+            mycars[1] = width*0.8/2;
+            mycars[2] = 0;
+            mycars[3] = height*0.8;
+            this.line(mycars);
+            mycars[0] = 0;
+            mycars[1] = width*0.8;
+            mycars[2] = height*0.8/2;
+            mycars[3] = height*0.8/2;
+            this.line(mycars);
+        }
+    }
 
+    //画圆
+    this.circle = function(args) {
+        var r, cx, cy, ox,oy,dowDom,isPadding,type;
+        cx = args[0];
+        cy = args[1];
+        r = args[2];
+        type = args[3];
+        this.cvsCfg.shape.cx = cx;
+        this.cvsCfg.shape.cy = cy;
+        if(type == 0) {
+            //不支持填充
+
+        } else if(type == 1) {
+            //填充
+            ox = cx - r;
+            oy = cy;
+            dowDom = this.createDraw(ox, oy, 2*r, 2*r, 1, "");
+            dowDom.style.borderRadius = "50%";
+        }
     };
     this.rectangle = function(args) {
 
@@ -187,7 +217,7 @@ function Draw() {
         dowDom.style.height = height + "px";
         dowDom.style.border = "none";
         dowDom.style.background = "#000000";
-        if(lineDeg != "") {
+        if(lineDeg != "" && lineDeg != undefined && lineDeg != NULL) {
             dowDom.style.transform = "rotate("+lineDeg+"deg)";
         }
         return dowDom;
