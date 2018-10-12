@@ -26,6 +26,8 @@ function Draw() {
         canvasDom.style.width = (width*0.8)+"px";
         canvasDom.style.height = (height*0.8)+"px";
         canvasDom.style.border = "1px solid #000000";
+        canvasDom.style.zIndex = "-9999";
+        canvasDom.style.overflow = "hidden";
         dom.appendChild(canvasDom);
         this.canvas = canvasDom;
 
@@ -169,23 +171,40 @@ function Draw() {
     }
 
     //画圆
-    this.circle = function(args) {
-        var r, cx, cy, ox,oy,dowDom,isPadding,type;
-        cx = args[0];
-        cy = args[1];
-        r = args[2];
-        type = args[3];
+    this.circle = function() {
+        var r, cx, cy, ox,oy,dowDom,isPadding,type,deg,i,k,args, j;
+        cx = arguments[0];
+        cy = arguments[1];
+        r = arguments[2];
+        type = arguments[3];
         this.cvsCfg.shape.cx = cx;
         this.cvsCfg.shape.cy = cy;
         if(type == 0) {
             //不支持填充
-
+            this.isDraw = 1;
+            deg = Math.atan(1/r);
+            k = 2*Math.PI;
+            args = new Array();
+            j = 1;
+            for(i =0; i<k; i += deg, j++) {
+                ox = r * Math.cos(i);
+                oy = r * Math.sin(i);
+                ox = ox + cx;
+                oy = oy + cy;
+                args[0] = ox;
+                args[1] = oy;
+                this.dot(args);
+            }
+            this.isDraw = 0;
         } else if(type == 1) {
             //填充
             ox = cx - r;
             oy = cy;
             dowDom = this.createDraw(ox, oy, 2*r, 2*r, 1, "");
             dowDom.style.borderRadius = "50%";
+            dowDom.style.border = "1px solid #000000";
+            dowDom.style.background = "#FFFFFF";
+            dowDom.style.zIndex = "-9998";
         }
     };
     this.rectangle = function(args) {
@@ -217,7 +236,7 @@ function Draw() {
         dowDom.style.height = height + "px";
         dowDom.style.border = "none";
         dowDom.style.background = "#000000";
-        if(lineDeg != "" && lineDeg != undefined && lineDeg != NULL) {
+        if(lineDeg != "" && lineDeg != "undefined") {
             dowDom.style.transform = "rotate("+lineDeg+"deg)";
         }
         return dowDom;
