@@ -1,4 +1,5 @@
-function DrawShape() {
+function ImageDrawShape() {
+    var canvas = new ImageCanvas();
 
     //圆形
     this.circle = function() {
