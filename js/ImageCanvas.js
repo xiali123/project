@@ -1,6 +1,8 @@
 function ImageCanvas() {
     var cvs = {};
     var cvsStr = "canvas";
+    var divStr = "div";
+    var divDom = {};
     var myConfig = {
         'width': 200,
         'height': 200,
@@ -20,8 +22,19 @@ function ImageCanvas() {
         }
     };
 
-    this.init = function(divDom) {
-        this.cvs = document.createElement(this.cvsStr);
+    this.init = function(cfg) {
+        this.setConfig(cfg);
 
+        this.divDom = document.createElement(this.divStr);
+        this.domSet(this.divDom, this.myConfig);
+
+        this.cvs = document.createElement(this.cvsStr);
+    };
+
+    this.domSet = function(dom, cfg) {
+        var i;
+        for(i in cfg) {
+            dom.style[i] = cfg[i];
+        }
     }
 }
